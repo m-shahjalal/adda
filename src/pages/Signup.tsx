@@ -1,10 +1,35 @@
- import React from "react"
+ import React,{useState} from "react"
  import logImage from '../../src/images/group.png'
  import { Link } from "react-router-dom"
- 
+ import { Ilogin } from "../utils/type"
 
+ 
 const Signup: React.FC = () => {
-  
+
+  const [logData,setLogData] = useState<Ilogin>({
+    email:'', 
+    password:''
+  })
+ 
+   
+  const handleChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
+        setLogData({
+          ...logData,
+          [event.target.name]:event.target.value
+        })
+  }
+ const {email,password} = logData 
+
+   const handleLogin=(event:React.FormEvent<HTMLFormElement>)=>{
+         event.preventDefault()
+         setLogData(logData)
+         console.log(logData);
+         setLogData({
+          email:'', 
+          password:''
+         })
+   }
+
   return (
   <div className="flex flex-wrap h-screen p-3 m-auto">
     
@@ -29,16 +54,20 @@ const Signup: React.FC = () => {
        
        <div className="content-center w-10/12 px-2 py-1 mx-2 mb-3 rounded-md bg-slate-300">
         
-          <form className="w-8/12 m-auto mt-4">
+          <form onSubmit={(e)=>handleLogin(e)} className="w-8/12 m-auto mt-4">
             
           <div className="mb-3">
             <label className="block mb-2 text-xs font-semibold">Email</label>
-            <input  type="email" placeholder="Enter your email" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+            <input  type="email" placeholder="Enter your email"
+            name='email' value={email} onChange={handleChange}
+             className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
           </div>
 
           <div className="mb-3">
             <label className="block mb-2 text-xs font-semibold">Password</label>
-            <input type="password" placeholder="*****" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+            <input type="password" placeholder="*****"
+            name='password' value={password} onChange={handleChange}
+             className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
           </div>
 
           <div className="flex flex-wrap content-center mb-3">

@@ -1,10 +1,38 @@
-import React from "react"
+import React, { useState } from "react"
 import logImage from '../../src/images/group.png'
 import { Link } from "react-router-dom"
+import { Iregister } from "../utils/type"
 
+ const Register:React.FC = () => {
+      const [regiData, setRegiData] =useState<Iregister>({
+        name:'',
+        email:'',
+        password:'',
+        cpassword:''
+      })
 
+      const handleChange=(event : React.ChangeEvent<HTMLInputElement>)=>{
+        setRegiData({
+          ...regiData,
+          [event.target.name]:event.target.value
+        })
+      }
 
- const Register = () => {
+       const {name,email,password,cpassword} = regiData
+
+      const submitRegister= (event : React.FormEvent<HTMLFormElement>)=>{
+          event.preventDefault()
+       setRegiData(regiData)
+       console.log(regiData);
+       setRegiData({
+        name:'',
+        email:'',
+        password:'',
+        cpassword:''
+       })
+      
+      }
+
     return (
         <div className="flex items-center sm:flex-col lg:flex-row">
           
@@ -29,34 +57,43 @@ import { Link } from "react-router-dom"
              
              <div className="content-center w-10/12 px-2 py-1 mx-2 mb-3 rounded-md bg-slate-300">
               
-                <form className="w-8/12 m-auto mt-4">
+                <form onSubmit={(e)=>submitRegister(e)} className="w-8/12 m-auto mt-4">
                   
                 <div className="mb-2">
                   <label className="block mb-2 text-xs font-semibold">User Name</label>
-                  <input  type="email" placeholder="Enter your email" className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
+                  <input  type="text" placeholder="Enter your name"
+                  name="name" value={name}  onChange={handleChange }
+                   className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
                 </div>
                    
                 <div className="mb-2">
                   <label className="block mb-2 text-xs font-semibold">Email</label>
-                  <input  type="email" placeholder="Enter your email" className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
+                  <input  type="email" placeholder="Enter your email" 
+                  name='email' value={email} onChange={handleChange}
+                  className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
                 </div>
                 
                 <div className="mb-2">
                   <label className="block mb-2 text-xs font-semibold">Password</label>
-                  <input type="password" placeholder="*****" className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
+                  <input type="password" placeholder="*****"
+                  name='password' value={password} onChange={handleChange}
+                   className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
                 </div>
                 <div className="mb-2">
                   <label className="block mb-2 text-xs font-semibold">confirm Password</label>
-                  <input type="password" placeholder="*****" className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
+                  <input type="password" placeholder="*****" 
+                  name='cpassword' value={cpassword} onChange={handleChange} 
+                  className="block w-full px-1 py-1 text-gray-500 border border-gray-300 rounded-md focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700" />
                 </div>
        
        
                 <div className="mb-2">
-                <button className="bg-purple-600 block w-full text-white rounded-md border-3 border-slate-300 hover:border-indigo-300 ...  focus:ring-purple-700 ">
+                <button  className="bg-purple-600 block w-full text-white rounded-md border-3 border-slate-300 hover:border-indigo-300 ...  focus:ring-purple-700 ">
                     Register
                   </button>
                 
                 </div>
+
               </form>
        
           
