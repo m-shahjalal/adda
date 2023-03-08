@@ -6,14 +6,18 @@ import Home from '../pages/Home';
 import Signup from './../pages/Signup';
 import Register from './../pages/Register';
 
+import  Event  from '../pages/Event';
+
 const Router = () => {
     return (
         <Routes>
+         
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="about" element={<About />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="register" element={<Register />} />
+                <Route path="event" element={<Event />} />
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
