@@ -16,6 +16,9 @@ const Home = () => {
          <EventList/>
         </div>
         <div className="flex flex-col w-2/4 h-screen p-2 bg-slate-300">
+        <Post/>
+        <PostCard/>
+        <PostCard/>
          <Post/>
          <PostCard/>
         
