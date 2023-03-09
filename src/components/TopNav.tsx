@@ -1,5 +1,6 @@
  import React from 'react'
  import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
  export const TopNav = () => {
 
@@ -11,12 +12,12 @@
 
    return (
   
-    <div className="lg:flex justify-between items-center fixed top-0 left-0 z-50 flex w-full px-2 mx-auto max-w-7xl sm:px-5 lg:px-6 bg-slate-300" >
-      <div className=" flex items-center justify-between h-16">
+    <div className="fixed top-0 left-0 z-50 flex items-center justify-between w-full px-2 mx-auto lg:flex max-w-7xl sm:px-5 lg:px-6 bg-slate-300" >
+      <div className="flex items-center justify-between h-16 ">
     
         <div className="flex items-center justify-center flex-1 sm:items-center sm:justify-start">
           <div className="flex items-center ">
-           logo
+          <Link to='/'>logo</Link>
           </div>
           <div className=" sm:ml-6 sm:block">
             <div className="flex items-center space-x-4">
@@ -33,7 +34,7 @@
                </span>
               <label className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             
-                <input type="search" id="default-search" className="lg:hidden md:hidden text-sm text-gray-900 border border-gray-300 rounded-lg pl1/3 10 h-25 w- bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search anything." required/>
+                <input type="search" id="default-search" className="text-sm text-gray-900 border border-gray-300 rounded-lg lg:hidden md:hidden pl1/3 10 h-25 w- bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search anything." required/>
                
                <svg aria-hidden="true" className="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -56,9 +57,8 @@
             { show ? (
               <div className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" >
             {/*   <!-- Active: "bg-gray-100", Not Active: "" --> */}
-              <a href="@#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem"  id="user-menu-item-0">Your Profile</a>
-              <a href="@#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-1">Settings</a>
-              <a href="@#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem"  id="user-menu-item-2">Sign out</a>
+              <Link to="/profile" className="block px-4 text-gray-700 cursor-pointer txt-sm p-y-2 " role="menuitem"  id="user-menu-item-0">Your Profile </Link>
+              <Link to="/logout" className="block px-4 py-2 text-sm text-gray-700" role="menuitem"  id="user-menu-item-2">Sign out</Link>
             </div>
             ) :null
             
