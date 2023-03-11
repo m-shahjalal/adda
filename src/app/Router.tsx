@@ -5,9 +5,8 @@ import About from '../pages/About';
 import Home from '../pages/Home';
 import Signup from './../pages/Signup';
 import Register from './../pages/Register';
-
-import  Event  from '../pages/Event';
 import  Profile  from '../pages/Profile';
+import EventPage from './../pages/Event';
 
 const Router = () => {
     return (
@@ -18,7 +17,7 @@ const Router = () => {
                 <Route path="about" element={<About />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="register" element={<Register />} />
-                <Route path="event" element={<Event />} />
+                <Route path="event" element={<EventPage />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="*" element={<NotFound />} />
             </Route>

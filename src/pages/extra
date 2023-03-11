@@ -1,0 +1,78 @@
+import TopNav from "../components/TopNav";
+
+const Event = () => {
+  return (
+    <>
+      <TopNav />
+      <div className="mt-16 p-2 bg-slate-100">
+      <section className="text-gray-600 body-font">
+  <div className="container px-5 mx-auto flex flex-col">
+    <div className="lg:w-4/6 mx-auto">
+      <div className="rounded-lg h-44 overflow-hidden">
+        <img alt="content" className="object-cover object-center h-full w-full" src="https://live.staticflickr.com/5139/5477293588_cf1d112d07_b.jpg" />
+      </div>
+      <div>bannar caption/title : this bannar is for event image caption here</div>
+
+
+      <div className="flex flex-col sm:flex-row mt-3 bg-red-200 h-full">
+        <div className="sm:w-2/4 text-center sm:pr-8 sm:py-8 bg-green-200">
+          <div className="w-full h-auto  inline-flex items-center justify-center bg-gray-200 text-gray-400">
+           <img className="h-10 w-10 rounded-lg" src="https://thumbs.dreamstime.com/b/events-icon-calendar-icon-white-background-events-icon-calendar-icon-simple-vector-icon-122490266.jpg" alt="imag" />
+          </div>
+          <div className="flex w-full flex-col items-center text-center justify-center">
+
+
+          <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul className="flex flex-wrap  text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+        <li className="mr-2" role="presentation">
+            <button className="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+        </li>
+        <li className="mr-2" role="presentation">
+            <button className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</button>
+        </li>
+        <li className="mr-2" role="presentation">
+            <button className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+        </li>
+        <li role="presentation">
+            <button className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>
+        </li>
+    </ul>
+</div>
+<div id="myTabContent">
+    <div className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <p className="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong className="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classNamees to control the content visibility and styling.</p>
+    </div>
+    <div className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+        <p className="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+    </div>
+    <div className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+        <p className="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong className="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+    </div>
+    <div className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+        <p className="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong className="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+    </div>
+</div>
+          </div>
+        </div>
+
+
+
+        <div className="sm:w-2/4 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+          <p className="leading-relaxed text-lg mb-4">Meggings portland fingerstache lyft, post-ironic fixie man bun banh mi umami everyday carry hexagon locavore direct trade art party. Locavore small batch listicle gastropub farm-to-table lumbersexual salvia messenger bag. Coloring book flannel truffaut craft beer drinking vinegar sartorial, disrupt fashion axe normcore meh butcher. Portland 90's scenester vexillologist forage post-ironic asymmetrical, chartreuse disrupt butcher paleo intelligentsia pabst before they sold out four loko. 3 wolf moon brooklyn.</p>
+          <a href="##" className="text-indigo-500 inline-flex items-center">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      </div>
+     
+    </>
+  );
+};
+export default Event;
