@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
  export const TopNav = () => {
 
          const [show,setShow] = useState(false)
+       
 
          const ToggleShow = () => {
                setShow(!show)
            }
+         
+      
 
    return (
   
@@ -25,13 +28,9 @@ import { Link } from 'react-router-dom';
   
               <a href="@" className="px-3 py-2 text-xs font-medium text-black rounded-md hover:text-white">Notification</a>
               
-               <span className='flex items-center text-xs hover:bg-slate-200'>
-                 <a href="#$">event</a>
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3">
-                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-               </svg>
-
-               </span>
+               <span  className='relative flex items-center text-xs hover:bg-slate-200'>
+                 <Link to="/event">My-event</Link>
+                 </span>
               <label className="mb-1 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             
                 <input type="search" id="default-search" className="text-sm text-gray-900 border border-gray-300 rounded-lg lg:hidden md:hidden pl1/3 10 h-25 w- bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search anything." required/>
@@ -63,6 +62,8 @@ import { Link } from 'react-router-dom';
             ) :null
             
               }
+
+    
 
           </div>
         </div>

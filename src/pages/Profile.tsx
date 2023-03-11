@@ -18,9 +18,9 @@ import { useState } from 'react';
   return (
     <>
     <TopNav/>
-    <div className='relative w-10/12 mx-auto mt-10 h-8screen bg-slate-200'>
+    <div className='relative w-10/12 mx-auto mt-12 h-8 bg-slate-200'>
         
-        <div className='container p-3 h-42 bg-slate-400'>
+        <div className=' p-5 h-42 bg-slate-400'>
             <div className='flex flex-col items-start justify-start gap-2'>
             <img src="https://img.freepik.com/free-photo/african-american-woman-mockup-psd-black-long-sleeve-tee-portr_53876-145641.jpg?size=626&ext=jpg" alt="fdd"
                          className="w-32 h-32 transition duration-200 transform border-4 border-white rounded-full shadow-md hover:scale-110" />
@@ -50,7 +50,7 @@ import { useState } from 'react';
            
             <div className='flex flex-wrap justify-start w-full gap-2 p-2 rounded-sm shadow-lg bg-slate-200 list-style-none'>
                <div className='flex-col items-center justify-between w-full text-xs hover:bg-slate-300'>
-                <p >Name:  </p><span className='text-xs hover:font-medium'>mohammad Abu Hossain</span>
+                <p>Name:  </p><span className='text-xs hover:font-medium'>mohammad Abu Hossain</span>
                </div>
                <div className='flex-col items-center justify-between w-full text-xs hover:bg-slate-300'> 
                 <p>Email:</p> <span className='text-xs hover:font-medium'>abu@gmail.com</span> 

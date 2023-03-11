@@ -1,3 +1,4 @@
+//import { Interface } from "readline"
 
 export interface Ilogin{
     email:string,
@@ -9,4 +10,8 @@ export interface Iregister {
   email:string,
   password:string,
   cpassword:string
+}
+
+export interface Ievent{
+ index:number
 }
