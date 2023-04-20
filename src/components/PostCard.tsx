@@ -1,6 +1,23 @@
 import React from 'react';
 
-const PostCard: React.FC = () => {
+interface PostCardPopsType {
+  post: {
+    id: number;
+    attributes: {
+      title: string;
+      content: string;
+      isCommentable: boolean;
+      slug: string;
+    };
+  };
+}
+
+const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
+  const {
+    id,
+    attributes: { title, content, isCommentable, slug },
+  } = post;
+
   return (
     <div className="flex flex-wrap bg-slate-100 border border-red-1 place-items-center h-scree shadow-sm p-2 mb-1">
       <div className="flex w-full items-center justify-between">
@@ -43,8 +60,7 @@ const PostCard: React.FC = () => {
           />
           <div className="bg-white w-full p-4">
             <p className="text-gray-600 font-light text-xs">
-              It is difficult to believe that we have become so used to having
-              instant access to information at...
+             {content}
             </p>
             <div className="flex flex-wrap justify-between items-center py-2 border-b-2 text-xs text-black font-medium">
               <span className="flex rounde">
