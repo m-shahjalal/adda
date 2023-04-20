@@ -8,7 +8,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const token = getStorage('accessToken');
-//   console.log('[apolloClient.js]', token);
+  
 
   return {
     headers: {
