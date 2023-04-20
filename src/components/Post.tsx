@@ -1,70 +1,113 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 
- const Post:React.FC = () => {
-  const [show,setShow] = useState(false)
+const Post: React.FC = () => {
+  const [show, setShow] = useState(false);
 
-  const showForm = ()=>{
-     setShow(true)
-  }
-  const closemode=()=>{
-    setShow(false)
-  }
+  const showForm = () => {
+    setShow(true);
+  };
+  const closemode = () => {
+    setShow(false);
+  };
   return (
     <>
-    <div  className='relative flex justify-between w-full h-10 gap-1 p-2 mb-3 bg-slate-300'> 
-       <img src="https://htmldemo.net/adda/adda/assets/images/profile/profile-small-37.jpg" alt="imag" className='w-6 h-6 rounded-lg' />
-        <input type="search" id="search" className="block p-3 pl-2 text-gray-900 border border-gray-300 rounded-lg w-60 text-sx bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
-       
-       <button onClick={showForm} type="submit" className="px-2 text-xs font-medium text-white bg-indigo-500 rounded-lg hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <div className="relative flex justify-between w-full h-10 gap-1 p-2 mb-3 bg-slate-300">
+        <img
+          src="https://htmldemo.net/adda/adda/assets/images/profile/profile-small-37.jpg"
+          alt="imag"
+          className="w-6 h-6 rounded-lg"
+        />
+        <input
+          type="search"
+          id="search"
+          className="block p-3 pl-2 text-gray-900 border border-gray-300 rounded-lg w-60 text-sx bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search"
+          required
+        />
+
+        <button
+          onClick={showForm}
+          type="submit"
+          className="px-2 text-xs font-medium text-white bg-indigo-500 rounded-lg hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
           post
-          </button> 
-          
+        </button>
+      </div>
 
+      {show ? (
+        <div className="absolute left-0 right-0 z-50 flex flex-col items-center justify-center mx-auto my-auto space-y-4 duration-1000 delay-700 bg-transparent top-12 h-22 ">
+          <div className="w-4/12 p-2 bg-white rounded shadow-xl">
+            <span onClick={() => closemode()} className="cursor-pointer">
+              x
+            </span>
+            <form className="mt-3 space-y-2">
+              <input
+                type="textarea"
+                className="w-full h-12 px-3 border text-clip overflow-hidden ... border-gray-800 rounded"
+                placeholder="whtat you say"
+              />
 
-    </div>
+              <div className="flex justify-start text-red-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4 cursor-pointer"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                  />
+                </svg>
+              </div>
 
-
-
-{ show ?
-   ( <div  className="absolute left-0 right-0 z-50 flex flex-col items-center justify-center mx-auto my-auto space-y-4 duration-1000 delay-700 bg-transparent top-12 h-22 ">
- 
-   <div className="w-4/12 p-2 bg-white rounded shadow-xl">
-   <span  onClick={()=>closemode()} className='cursor-pointer'>x</span>
-     <form className="mt-3 space-y-2">
-       <input type="textarea" className="w-full h-12 px-3 border text-clip overflow-hidden ... border-gray-800 rounded" placeholder="whtat you say" />
-      
- 
-       <div className="flex justify-start text-red-500">
-         
-         <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4 cursor-pointer">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
-       <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-      </svg>
-
-
-       </div>
- 
-       <button className="w-full px-2 py-2 text-xs font-medium text-center text-white bg-blue-900 rounded-md">post</button>
-     </form>
- 
-   </div>
- </div> ):null }
-
- 
-
-  
-</>
-  )
-}
-export default Post
-
+              <button className="w-full px-2 py-2 text-xs font-medium text-center text-white bg-blue-900 rounded-md">
+                post
+              </button>
+            </form>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+};
+export default Post;
 
 /* 
 
