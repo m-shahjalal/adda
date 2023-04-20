@@ -1,13 +1,13 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { getStorage } from './../utils/storage';
 
 const httpLink = createHttpLink({
   uri: 'https://adda-fa7i.onrender.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  //   const token = getStorage('accessToken');
-  const token = 'token';
+  const token = getStorage('accessToken');
   console.log('[apolloClient.js]', token);
 
   return {
