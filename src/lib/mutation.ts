@@ -25,3 +25,28 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const CREATE_POST_MUTATION = gql`
+  mutation CreatePost($input: PostInput!) {
+    createPost(data: $input) {
+      data {
+        id
+        attributes {
+          title
+          content
+          isCommentable
+          slug
+          user {
+            data {
+              id
+              attributes {
+                username
+                email
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
