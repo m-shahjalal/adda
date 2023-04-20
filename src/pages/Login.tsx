@@ -1,33 +1,50 @@
+import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logImage from '../../src/images/group.png';
+import { useAppDispatch } from '../app/reduxHook';
+import { LOGIN_USER } from '../lib/mutation';
+import { setLogin } from '../store/slices/authSlice';
 import { Ilogin } from '../utils/type';
 
+const INITIAL_STATE = {
+  identifier: '',
+  password: '',
+};
+
 const Login: React.FC = () => {
-  const [logData, setLogData] = useState<Ilogin>({
-    email: '',
-    password: '',
+  const [credentialText, setCredentialText] = useState<Ilogin>({
+    ...INITIAL_STATE,
   });
 
+  const dispatch = useAppDispatch();
+  const [login] = useMutation(LOGIN_USER);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLogData({
-      ...logData,
+    setCredentialText({
+      ...credentialText,
       [event.target.name]: event.target.value,
     });
   };
-  const { email, password } = logData;
+  const { identifier, password } = credentialText;
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLogData(logData);
-    console.log(logData);
-    setLogData({
-      email: '',
-      password: '',
+
+    const {
+      data: {
+        login: { jwt, user },
+      },
+    } = await login({
+      variables: { input: { ...credentialText } },
+    });
+
+    dispatch(setLogin({ accessToken: jwt, user: { ...user } }));
+
+    setCredentialText({
+      ...INITIAL_STATE,
     });
   };
-
-  console.log(logData);
 
   return (
     <div className="flex flex-wrap h-screen p-3 m-auto">
@@ -56,8 +73,8 @@ const Login: React.FC = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  name="email"
-                  value={email}
+                  name="identifier"
+                  value={identifier}
                   onChange={handleChange}
                   className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                 />
@@ -69,7 +86,7 @@ const Login: React.FC = () => {
                 </label>
                 <input
                   type="password"
-                  placeholder="*****"
+                  placeholder="Enter your password"
                   name="password"
                   value={password}
                   onChange={handleChange}

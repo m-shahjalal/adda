@@ -1,7 +1,7 @@
 //import { Interface } from "readline"
 
 export interface Ilogin{
-    email:string,
+    identifier:string,
     password:string
    }
 
