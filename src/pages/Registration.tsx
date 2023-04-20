@@ -63,7 +63,7 @@ const Register: React.FC = () => {
        <div className="w-72">
          <span className="text-xs font-semibold text-gray-400">already have account?</span>
        
-         <Link to='/signup' className="text-xs font-semibold text-purple-700">Login</Link>
+         {/* <Link to='/signup' className="text-xs font-semibold text-purple-700">Login</Link> */}
        </div>
      </div>
     
