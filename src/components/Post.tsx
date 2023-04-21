@@ -1,7 +1,32 @@
+import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
+import slugify from 'slugify';
+import { useAppSelector } from '../app/reduxHook';
+import { CREATE_POST_MUTATION } from '../lib/mutation';
+import { POSTS_QUERY } from '../lib/queries';
+
+const INITIAL_STATE = {
+  title: '',
+  content: '',
+  isCommentable: true,
+};
 
 const Post: React.FC = () => {
   const [show, setShow] = useState(false);
+  const [text, setText] = useState({ ...INITIAL_STATE });
+  const userId = useAppSelector((state) => state.auth.user.id);
+  const [createPost] = useMutation(CREATE_POST_MUTATION, {
+    refetchQueries: () => [
+      {
+        query: POSTS_QUERY,
+        variables: {},
+      },
+    ],
+  });
+
+  const { title, content } = text;
+
+  const slug = slugify(title);
 
   const showForm = () => {
     setShow(true);
@@ -9,6 +34,30 @@ const Post: React.FC = () => {
   const closemode = () => {
     setShow(false);
   };
+
+  const handleChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setText({
+      ...text,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+
+  const postSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (userId) {
+      await createPost({
+        variables: { input: { ...text, slug: slug, user: userId } },
+      });
+    }
+    setText({ ...INITIAL_STATE });
+  };
+
   return (
     <>
       <div className="relative flex justify-between w-full h-10 gap-1 p-2 mb-3 bg-slate-300">
@@ -40,12 +89,33 @@ const Post: React.FC = () => {
             <span onClick={() => closemode()} className="cursor-pointer">
               x
             </span>
-            <form className="mt-3 space-y-2">
+            <form className="mt-3 space-y-2" onSubmit={postSubmitHandler}>
               <input
-                type="textarea"
-                className="w-full h-12 px-3 border text-clip overflow-hidden ... border-gray-800 rounded"
-                placeholder="whtat you say"
+                type="text"
+                name="title"
+                value={title}
+                onChange={handleChange}
+                className="w-full h-8 px-3 border text-clip overflow-hidden ... border-gray-800 rounded"
+                placeholder="Title"
               />
+
+              <textarea
+                name="content"
+                placeholder="whtat you say"
+                value={content}
+                onChange={handleChange}
+                className="w-full h-20 px-3 border text-clip overflow-hidden ... border-gray-800 rounded"
+              />
+
+              <select
+                name="isCommentable"
+                id=""
+                onChange={handleChange}
+                className="w-full border border-gray-800 rounded"
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
 
               <div className="flex justify-start text-red-500">
                 <svg
@@ -97,7 +167,7 @@ const Post: React.FC = () => {
                 </svg>
               </div>
 
-              <button className="w-full px-2 py-2 text-xs font-medium text-center text-white bg-blue-900 rounded-md">
+              <button className="w-full  px-2 py-2 text-xs font-medium text-center text-white bg-blue-900 rounded-md">
                 post
               </button>
             </form>
