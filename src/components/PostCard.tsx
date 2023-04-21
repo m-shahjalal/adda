@@ -1,4 +1,7 @@
 import React from 'react';
+import { FaRegEdit } from 'react-icons/fa';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { useAppSelector } from '../app/reduxHook';
 
 interface PostCardPopsType {
   post: {
@@ -13,6 +16,7 @@ interface PostCardPopsType {
 }
 
 const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
+  const { username } = useAppSelector((state) => state.auth.user);
   const {
     id,
     attributes: { title, content, isCommentable, slug },
@@ -27,14 +31,15 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
             alt="User avatar"
             src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200"
           />
-          <div className="text-gray-600 text-xs">
-            <p className="text-xs">
-              shajala Supercars <br />
-              20 minitues age
+          <div className="text-gray-600 text-xs mb-2">
+            <p className="text-lg ml-1">
+              {username}
+              <p className="text-[12px]"> 20 minitues age</p>
             </p>
           </div>
         </div>
-        <div className="flex">
+
+        <div className="flex cursor-pointer relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -42,6 +47,7 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
             strokeWidth={1.5}
             stroke="currentColor"
             className="w-6 h-6"
+            style={{ userSelect: 'none' }}
           >
             <path
               strokeLinecap="round"
@@ -52,16 +58,15 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
         </div>
       </div>
       <div className="overflow-hidden shadow-lg  hover:shadow-2xl rounded-lg h-30 w-full md:w-80 cursor-pointer m-auto">
-        <a href="@#" className="w-full block h-full">
+        <div className="w-full block h-full">
           <img
             alt="blog phto"
             src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
             className="max-h-40 w-full object-cover"
           />
           <div className="bg-white w-full p-4">
-            <p className="text-gray-600 font-light text-xs">
-             {content}
-            </p>
+            <h3 className="text-lg text-black">{title}</h3>
+            <p className="text-gray-600 text-md mt-1">{content}</p>
             <div className="flex flex-wrap justify-between items-center py-2 border-b-2 text-xs text-black font-medium">
               <span className="flex rounde">
                 <svg
@@ -78,7 +83,13 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                   />
                 </svg>
-                <p>24 people likes </p>
+                <div className="flex items-center justify-between">
+                  <p>24 people likes </p>
+                  <div className="flex ml-28">
+                    <RiDeleteBin6Line className="mr-3 text-lg" />
+                    <FaRegEdit className="text-lg" />
+                  </div>
+                </div>
               </span>
               <span>
                 <svg
@@ -98,7 +109,7 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
               </span>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   );
