@@ -1,7 +1,10 @@
+import { useMutation } from '@apollo/client';
 import React from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useAppSelector } from '../app/reduxHook';
+import { DELETE_POST_MUTATION } from '../lib/mutation';
+import { POSTS_QUERY } from '../lib/queries';
 
 interface PostCardPopsType {
   post: {
@@ -17,10 +20,25 @@ interface PostCardPopsType {
 
 const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
   const { username } = useAppSelector((state) => state.auth.user);
+  const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+    refetchQueries: () => [
+      {
+        query: POSTS_QUERY,
+        variables: { id: id },
+      },
+    ],
+  });
+
   const {
     id,
     attributes: { title, content, isCommentable, slug },
   } = post;
+
+  const deletePostHanlder = async () => {
+    if (id) {
+      await deletePost({ variables: { id } });
+    }
+  };
 
   return (
     <div className="flex flex-wrap bg-slate-100 border border-red-1 place-items-center h-scree shadow-sm p-2 mb-1">
@@ -86,7 +104,10 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
                 <div className="flex items-center justify-between">
                   <p>24 people likes </p>
                   <div className="flex ml-28">
-                    <RiDeleteBin6Line className="mr-3 text-lg" />
+                    <RiDeleteBin6Line
+                      className="mr-3 text-lg"
+                      onClick={deletePostHanlder}
+                    />
                     <FaRegEdit className="text-lg" />
                   </div>
                 </div>
