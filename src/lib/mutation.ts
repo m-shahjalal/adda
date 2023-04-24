@@ -105,3 +105,21 @@ export const DELETE_COMMENT_MUTATION = gql`
     }
   }
 `;
+
+export const UPDATE_COMMENT_MUTATION = gql`
+  mutation UpdateComment($id: ID!, $input: CommentInput!) {
+    updateComment(id: $id, data: $input) {
+      data {
+        id
+        attributes {
+          content
+          user {
+            data {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+`;
