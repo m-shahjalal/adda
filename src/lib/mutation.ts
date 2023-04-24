@@ -74,3 +74,24 @@ export const UPDATE_POST_MUTATION = gql`
     }
   }
 `;
+
+export const CREATE_COMMENT_MUTATION = gql`
+  mutation CreateComment($input: CommentInput!) {
+    createComment(data: $input) {
+      data {
+        id
+        attributes {
+          content
+          user {
+            data {
+              id
+              attributes {
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
