@@ -60,3 +60,17 @@ export const DELETE_POST_MUTATION = gql`
     }
   }
 `;
+
+export const UPDATE_POST_MUTATION = gql`
+  mutation UpdatePost($id: ID!, $input: PostInput!) {
+    updatePost(id: $id, data: $input) {
+      data {
+        id
+        attributes {
+          title
+          content
+        }
+      }
+    }
+  }
+`;

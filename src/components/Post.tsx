@@ -4,6 +4,7 @@ import slugify from 'slugify';
 import { useAppSelector } from '../app/reduxHook';
 import { CREATE_POST_MUTATION } from '../lib/mutation';
 import { POSTS_QUERY } from '../lib/queries';
+import UpdatePost from './UpdatePost';
 
 const INITIAL_STATE = {
   title: '',
