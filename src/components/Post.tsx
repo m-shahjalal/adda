@@ -28,6 +28,7 @@ const Post: React.FC = () => {
   const { title, content } = text;
 
   const slug = slugify(title);
+ 
 
   const showForm = () => {
     setShow(true);
@@ -48,15 +49,19 @@ const Post: React.FC = () => {
     });
   };
 
+
   const postSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userId) {
-      await createPost({
+      const data = await createPost({
         variables: { input: { ...text, slug: slug, user: userId } },
       });
+
     }
     setText({ ...INITIAL_STATE });
   };
+
+  console.log('text>>', text);
 
   return (
     <>
