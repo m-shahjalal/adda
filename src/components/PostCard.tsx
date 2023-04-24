@@ -190,7 +190,7 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
               {/* map comment */}
               {comments?.length > 0 &&
                 comments?.map((comment: any) => (
-                  <Comments key={comment.id} comment={comment} />
+                  <Comments key={comment.id} comment={comment} postId={id}/>
                 ))}
             </div>
             {/* comment show end */}

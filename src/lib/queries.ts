@@ -31,6 +31,7 @@ export const COMMENTS_BY_POST_ID_QUERY = gql`
         attributes {
           comments {
             data {
+              id
               attributes {
                 content
               }
