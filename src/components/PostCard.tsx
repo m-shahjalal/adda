@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useAppSelector } from '../app/reduxHook';
-import { DELETE_POST_MUTATION } from '../lib/mutation';
+import { CREATE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../lib/mutation';
 import { POSTS_QUERY } from '../lib/queries';
 import UpdatePost from './UpdatePost';
 
@@ -22,7 +22,7 @@ interface PostCardPopsType {
 const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
   const [toggleShow, setToggleShow] = useState(false);
   const [commentText, setCommentText] = useState('');
-  const { username } = useAppSelector((state) => state.auth.user);
+  const { username, id: userId } = useAppSelector((state) => state.auth.user);
   const [deletePost] = useMutation(DELETE_POST_MUTATION, {
     refetchQueries: () => [
       {
@@ -31,6 +31,7 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
       },
     ],
   });
+  const [createComment] = useMutation(CREATE_COMMENT_MUTATION);
 
   const {
     id,
@@ -47,16 +48,17 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
     setCommentText(event.target.value);
   };
 
-  const handleCommentKeydown = (event: React.KeyboardEvent) => {
+  const handleCommentKeydown = async (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       event.preventDefault();
 
-      console.log({ commentText });
+      await createComment({
+        variables: { input: { post: id, user: userId, content: commentText } },
+      });
 
       setCommentText('');
     }
   };
-  console.log('commentText', commentText);
 
   return (
     <>
