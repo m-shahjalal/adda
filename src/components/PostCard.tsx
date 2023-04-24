@@ -19,10 +19,9 @@ interface PostCardPopsType {
   };
 }
 
-const PostCard: React.FC<PostCardPopsType> = ({
-  post,
-}) => {
+const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
   const [toggleShow, setToggleShow] = useState(false);
+  const [commentText, setCommentText] = useState('');
   const { username } = useAppSelector((state) => state.auth.user);
   const [deletePost] = useMutation(DELETE_POST_MUTATION, {
     refetchQueries: () => [
@@ -43,6 +42,21 @@ const PostCard: React.FC<PostCardPopsType> = ({
       await deletePost({ variables: { id } });
     }
   };
+
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCommentText(event.target.value);
+  };
+
+  const handleCommentKeydown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+
+      console.log({ commentText });
+
+      setCommentText('');
+    }
+  };
+  console.log('commentText', commentText);
 
   return (
     <>
@@ -138,7 +152,25 @@ const PostCard: React.FC<PostCardPopsType> = ({
                   </svg>
                 </span>
               </div>
+              {/* comment input */}
+              <form onKeyDown={handleCommentKeydown}>
+                <input
+                  type="text"
+                  placeholder="comment..."
+                  className="w-full border border-[#c1c3c6] outline-none rounded-lg mt-2 px-2 py-1 text-gray-700"
+                  value={commentText}
+                  onChange={handleTextChange}
+                />
+              </form>
             </div>
+
+            {/* comment show */}
+            <div className="">
+              <div className="border rounded bg-white mt-0.5 p-1 text">
+                <p>Hello comments</p>
+              </div>
+            </div>
+            {/* comment show end */}
           </div>
         </div>
       </div>
