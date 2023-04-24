@@ -1,10 +1,11 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useAppSelector } from '../app/reduxHook';
 import { CREATE_COMMENT_MUTATION, DELETE_POST_MUTATION } from '../lib/mutation';
-import { POSTS_QUERY } from '../lib/queries';
+import { COMMENTS_BY_POST_ID_QUERY, POSTS_QUERY } from '../lib/queries';
+import Comments from './Comments';
 import UpdatePost from './UpdatePost';
 
 interface PostCardPopsType {
@@ -23,6 +24,7 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
   const [toggleShow, setToggleShow] = useState(false);
   const [commentText, setCommentText] = useState('');
   const { username, id: userId } = useAppSelector((state) => state.auth.user);
+
   const [deletePost] = useMutation(DELETE_POST_MUTATION, {
     refetchQueries: () => [
       {
@@ -31,12 +33,23 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
       },
     ],
   });
-  const [createComment] = useMutation(CREATE_COMMENT_MUTATION);
 
   const {
     id,
     attributes: { title, content, isCommentable, slug },
   } = post;
+
+  const { data, loading, error } = useQuery(COMMENTS_BY_POST_ID_QUERY, {
+    variables: { id: id },
+  });
+  const [createComment] = useMutation(CREATE_COMMENT_MUTATION, {
+    refetchQueries: () => [
+      {
+        query: COMMENTS_BY_POST_ID_QUERY,
+        variables: { id },
+      },
+    ],
+  });
 
   const deletePostHanlder = async () => {
     if (id) {
@@ -59,6 +72,12 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
       setCommentText('');
     }
   };
+
+  console.log('comment - data>>', data);
+
+  const comments = data?.posts?.data.map(
+    (info: any) => info?.attributes?.comments?.data
+  );
 
   return (
     <>
@@ -168,9 +187,11 @@ const PostCard: React.FC<PostCardPopsType> = ({ post }) => {
 
             {/* comment show */}
             <div className="">
-              <div className="border rounded bg-white mt-0.5 p-1 text">
-                <p>Hello comments</p>
-              </div>
+              {/* map comment */}
+              {comments?.length > 0 &&
+                comments?.map((comment: any) => (
+                  <Comments key={comment.id} comment={comment} />
+                ))}
             </div>
             {/* comment show end */}
           </div>

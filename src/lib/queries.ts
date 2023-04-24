@@ -23,3 +23,21 @@ export const POSTS_QUERY = gql`
     }
   }
 `;
+
+export const COMMENTS_BY_POST_ID_QUERY = gql`
+  query comments($id: ID!) {
+    posts(filters: { id: { eq: $id } }) {
+      data {
+        attributes {
+          comments {
+            data {
+              attributes {
+                content
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
